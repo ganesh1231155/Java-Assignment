@@ -1,6 +1,5 @@
 import java.io.*;
 import java.sql.*;
-//import java.sql.ResultSet.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -9,7 +8,6 @@ class TableOperations
 	Connection c=null;
 	Statement st=null;
 	ResultSet rs=null;
-	ResultSet rs2=null;
 	Scanner sc=new Scanner(System.in);
 	
 	Object[] data=new Object[3];
@@ -159,11 +157,10 @@ class TableOperations
 			roll=sc.nextInt();
 			
 			rs=st.executeQuery("select * from student where roll_no="+roll);
-			rs2=rs;
-			if(rs.next())
+			if(rs.isBeforeFirst())
 			{
 				//rs.previous();
-				tabledata(rs2);
+				tabledata(rs);
 			}
 			else{
 				System.out.println("No Such Record Found.");
@@ -181,11 +178,10 @@ class TableOperations
 		{
 			rs=null;
 			rs=st.executeQuery("select * from student");
-			rs2=rs;
 			if(rs.isBeforeFirst())
 			{
 				//rs.previous();
-				tabledata(rs2);
+				tabledata(rs);
 			}
 			else
 			{
